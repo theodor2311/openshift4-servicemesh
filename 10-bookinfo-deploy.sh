@@ -1,6 +1,12 @@
 #!/bin/bash
-BOOKINFO_PROJECT=bookinfo
+set -e
+
+if [[ -z ${BOOKINFO_PROJECT} ]]; then
+  BOOKINFO_PROJECT='bookinfo'
+fi
+
 ISTIO_RELEASE=$(curl --silent https://api.github.com/repos/istio/istio/releases/latest |grep -Po '"tag_name": "\K.*?(?=")')
+
 grep BOOKINFO_PROJECT $HOME/.bashrc || echo "export BOOKINFO_PROJECT=$BOOKINFO_PROJECT" >> $HOME/.bashrc
 grep ISTIO_RELEASE $HOME/.bashrc || echo "export ISTIO_RELEASE=$ISTIO_RELEASE" >> $HOME/.bashrc
 

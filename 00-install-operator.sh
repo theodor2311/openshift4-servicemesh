@@ -1,4 +1,8 @@
 #!/bin/bash
+set -e
+
+echo "Creating subscriptions..."
+
 oc create -f - << EOF
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription

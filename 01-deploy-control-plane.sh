@@ -1,5 +1,22 @@
 #!/bin/bash
-oc new-project istio-system
+set -e
+
+if [[ -z ${ISTIO_PROJECT} ]]; then
+  ISTIO_PROJECT='istio-system'
+fi
+
+echo "Create istio project: ${ISTIO_PROJECT}"
+oc new-project ${ISTIO_PROJECT} > /dev/null
+
+echo 'Checking subscriptions...'
+
+oc get sub elasticsearch-operator -n openshift-operators >/dev/null
+oc get sub jaeger-product -n openshift-operators >/dev/null
+oc get sub kiali-ossm -n openshift-operators >/dev/null
+oc get sub servicemeshoperator -n openshift-operators >/dev/null
+
+
+echo 'Waiting for opertaors...'
 
 for operator in elasticsearch-operator jaeger-product kiali-ossm servicemeshoperator;do
 while [[ $(oc get csv $(oc get packagemanifest $operator -n openshift-marketplace -o jsonpath='{.status.channels[].currentCSV}') -o jsonpath='{.status.reason}' 2>/dev/null) != 'Copied' ]];do
@@ -8,12 +25,14 @@ done
 echo $operator installed
 done
 
+echo 'Create Service Mesh Control Plane...'
+
 oc create -f - << EOF
 apiVersion: maistra.io/v1
 kind: ServiceMeshControlPlane
 metadata:
   name: basic-install
-  namespace: istio-system
+  namespace: ${ISTIO_PROJECT}
 spec:
   istio:
     global:
@@ -55,4 +74,5 @@ spec:
         template: all-in-one
 EOF
 
-oc get pods -n istio-system -w
+echo '** This is not a production grade control plane setup **'
+echo "Use 'watch oc get pods -n ${ISTIO_PROJECT}' to watch the istio resources to be created"
