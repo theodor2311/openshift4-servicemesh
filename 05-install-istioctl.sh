@@ -24,7 +24,8 @@ printf "Downloading %s from %s ..." "$NAME" "$URL"
 curl -s -L "$URL" | tar xz
 
 mv $NAME/bin/istioctl /usr/bin
+mv $NAME/tools/istioctl.bash /etc/bash_completion.d
 
 rm -rf $NAME
 
-echo "Download completed, istioctl is now ready to use"
+echo "istioctl installed"
