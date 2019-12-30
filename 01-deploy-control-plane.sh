@@ -74,5 +74,15 @@ spec:
         template: all-in-one
 EOF
 
+oc create -f - << EOF
+apiVersion: maistra.io/v1
+kind: ServiceMeshMemberRoll
+metadata:
+  name: default
+  namespace: istio-system
+spec:
+  members: {}
+EOF
+
 echo '** This is not a production grade control plane setup **'
 echo "Use 'watch oc get pods -n ${ISTIO_PROJECT}' to watch the istio resources to be created"
