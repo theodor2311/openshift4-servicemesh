@@ -78,8 +78,8 @@ oc create -f - << EOF
 apiVersion: maistra.io/v1
 kind: ServiceMeshMemberRoll
 metadata:
-  name: ${ISTIO_PROJECT}
-  namespace: istio-system
+  name: default
+  namespace: ${ISTIO_PROJECT}
 spec:
   members: {}
 EOF
