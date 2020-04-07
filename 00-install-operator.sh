@@ -10,12 +10,11 @@ metadata:
   name: elasticsearch-operator
   namespace: openshift-operators
 spec:
-  channel: "$(oc get packagemanifest elasticsearch-operator -n openshift-marketplace -o jsonpath='{.status.channels[].name}')"
+  channel: "$(oc get packagemanifest elasticsearch-operator -n openshift-marketplace -o jsonpath='{.status.defaultChannel}')"
   installPlanApproval: Automatic
   name: elasticsearch-operator
   source: "$(oc get packagemanifest elasticsearch-operator -n openshift-marketplace -o jsonpath='{.status.catalogSource}')"
   sourceNamespace: "$(oc get packagemanifest elasticsearch-operator -n openshift-marketplace -o jsonpath='{.status.catalogSourceNamespace}')"
-  startingCSV: "$(oc get packagemanifest elasticsearch-operator -n openshift-marketplace -o jsonpath='{.status.channels[].currentCSV}')"
 EOF
 
 oc create -f - << EOF
@@ -25,12 +24,11 @@ metadata:
   name: jaeger-product
   namespace: openshift-operators
 spec:
-  channel: "$(oc get packagemanifest jaeger-product -n openshift-marketplace -o jsonpath='{.status.channels[].name}')"
+  channel: "$(oc get packagemanifest jaeger-product -n openshift-marketplace -o jsonpath='{.status.defaultChannel}')"
   installPlanApproval: Automatic
   name: jaeger-product
   source: "$(oc get packagemanifest jaeger-product -n openshift-marketplace -o jsonpath='{.status.catalogSource}')"
   sourceNamespace: "$(oc get packagemanifest jaeger-product -n openshift-marketplace -o jsonpath='{.status.catalogSourceNamespace}')"
-  startingCSV: "$(oc get packagemanifest jaeger-product -n openshift-marketplace -o jsonpath='{.status.channels[].currentCSV}')"
 EOF
 
 oc create -f - << EOF
@@ -40,12 +38,11 @@ metadata:
   name: kiali-ossm
   namespace: openshift-operators
 spec:
-  channel: "$(oc get packagemanifest kiali-ossm -n openshift-marketplace -o jsonpath='{.status.channels[].name}')"
+  channel: "$(oc get packagemanifest kiali-ossm -n openshift-marketplace -o jsonpath='{.status.defaultChannel}')"
   installPlanApproval: Automatic
   name: kiali-ossm
   source: "$(oc get packagemanifest kiali-ossm -n openshift-marketplace -o jsonpath='{.status.catalogSource}')"
   sourceNamespace: "$(oc get packagemanifest kiali-ossm -n openshift-marketplace -o jsonpath='{.status.catalogSourceNamespace}')"
-  startingCSV: "$(oc get packagemanifest kiali-ossm -n openshift-marketplace -o jsonpath='{.status.channels[].currentCSV}')"
 EOF
 
 oc create -f - << EOF
@@ -55,10 +52,9 @@ metadata:
   name: servicemeshoperator
   namespace: openshift-operators
 spec:
-  channel: "$(oc get packagemanifest servicemeshoperator -n openshift-marketplace -o jsonpath='{.status.channels[].name}')"
+  channel: "$(oc get packagemanifest servicemeshoperator -n openshift-marketplace -o jsonpath='{.status.defaultChannel}')"
   installPlanApproval: Automatic
   name: servicemeshoperator
   source: "$(oc get packagemanifest servicemeshoperator -n openshift-marketplace -o jsonpath='{.status.catalogSource}')"
   sourceNamespace: "$(oc get packagemanifest servicemeshoperator -n openshift-marketplace -o jsonpath='{.status.catalogSourceNamespace}')"
-  startingCSV: "$(oc get packagemanifest servicemeshoperator -n openshift-marketplace -o jsonpath='{.status.channels[].currentCSV}')"
 EOF
