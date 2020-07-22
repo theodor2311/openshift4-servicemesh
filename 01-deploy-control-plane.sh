@@ -18,7 +18,7 @@ oc get sub servicemeshoperator -n openshift-operators >/dev/null
 echo 'Waiting for opertaors...'
 
 for operator in Elasticsearch Jaeger Kiali servicemesh;do
-while [[ $(oc get csv $(oc get csv |grep $operator | awk '{print $1}') != 'Succeeded' ]];do
+while [[ $(oc get csv $(oc get csv |grep $operator | awk '{print $1}') -o jsonpath='{.status.phase}') != 'Succeeded' ]];do
   sleep 1
 done
 echo $operator installed
