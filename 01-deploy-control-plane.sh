@@ -18,7 +18,7 @@ oc get sub servicemeshoperator -n openshift-operators >/dev/null
 
 echo 'Waiting for opertaors...'
 
-for operator in elasticsearch-operator jaeger-product kiali-ossm servicemeshoperator;do
+for operator in jaeger-product kiali-ossm servicemeshoperator;do
 while [[ $(oc get csv $(oc get packagemanifest $operator -n openshift-marketplace -o jsonpath='{.status.channels[].currentCSV}') -o jsonpath='{.status.phase}' 2>/dev/null) != 'Succeeded' ]];do
   sleep 1
 done
