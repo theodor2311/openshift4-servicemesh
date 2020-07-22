@@ -10,7 +10,6 @@ oc new-project ${ISTIO_PROJECT} > /dev/null
 
 echo 'Checking subscriptions...'
 
-oc get sub elasticsearch-operator -n openshift-operators >/dev/null
 oc get sub jaeger-product -n openshift-operators >/dev/null
 oc get sub kiali-ossm -n openshift-operators >/dev/null
 oc get sub servicemeshoperator -n openshift-operators >/dev/null
