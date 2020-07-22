@@ -79,8 +79,7 @@ kind: ServiceMeshMemberRoll
 metadata:
   name: default
   namespace: ${ISTIO_PROJECT}
-spec:
-  members: {}
+spec: {}
 EOF
 
 echo '** This is not a production grade control plane setup **'
