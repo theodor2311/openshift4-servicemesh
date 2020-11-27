@@ -6,6 +6,7 @@ set -e
 cd /dev/shm
 
 OSEXT="linux"
+ISTIO_ARCH="amd64"
 
 if [ "x${ISTIO_VERSION}" = "x" ] ; then
   ISTIO_VERSION=$(curl -L -s https://api.github.com/repos/istio/istio/releases | \
@@ -19,8 +20,8 @@ if [ "x${ISTIO_VERSION}" = "x" ] ; then
 fi
 
 NAME="istio-$ISTIO_VERSION"
-URL="https://github.com/istio/istio/releases/download/${ISTIO_VERSION}/istio-${ISTIO_VERSION}-${OSEXT}.tar.gz"
-printf "Downloading %s from %s ..." "$NAME" "$URL"
+URL="https://github.com/istio/istio/releases/download/${ISTIO_VERSION}/istio-${ISTIO_VERSION}-${OSEXT}-${ISTIO_ARCH}.tar.gz"
+printf "Downloading %s from %s ...\n" "$NAME" "$URL"
 curl -s -L "$URL" | tar xz
 
 mv $NAME/bin/istioctl /usr/bin
@@ -28,4 +29,4 @@ mv $NAME/tools/istioctl.bash /etc/bash_completion.d
 
 rm -rf $NAME
 
-echo "istioctl installed"
+printf "istioctl installed\n"
