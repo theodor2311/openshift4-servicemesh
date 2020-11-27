@@ -27,50 +27,27 @@ done
 echo 'Create Service Mesh Control Plane...'
 
 oc create -f - << EOF
-apiVersion: maistra.io/v1
+apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
 metadata:
-  name: basic-install
-  namespace: ${ISTIO_PROJECT}
+  name: basic
+  namespace: istio-system
 spec:
-  istio:
-    global:
-      proxy:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 500m
-            memory: 128Mi
-    gateways:
-      istio-egressgateway:
-        autoscaleEnabled: false
-      istio-ingressgateway:
-        autoscaleEnabled: false
-    mixer:
-      policy:
-        autoscaleEnabled: false
-      telemetry:
-        autoscaleEnabled: false
-        resources:
-          requests:
-            cpu: 100m
-            memory: 1G
-          limits:
-            cpu: 500m
-            memory: 4G
-    pilot:
-      autoscaleEnabled: false
-      traceSampling: 100
+  version: v2.0
+  tracing:
+    type: Jaeger
+    sampling: 10000
+  addons:
+    jaeger:
+      name: jaeger
+      install:
+        storage:
+          type: Memory
     kiali:
       enabled: true
+      name: kiali
     grafana:
       enabled: true
-    tracing:
-      enabled: true
-      jaeger:
-        template: all-in-one
 EOF
 
 oc create -f - << EOF
