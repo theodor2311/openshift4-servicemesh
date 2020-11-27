@@ -8,7 +8,7 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: elasticsearch-operator
-  namespace: openshift-operators
+  namespace: openshift-operators-redhat
 spec:
   channel: "$(oc get packagemanifest elasticsearch-operator -n openshift-marketplace -o jsonpath='{.status.defaultChannel}')"
   installPlanApproval: Automatic
