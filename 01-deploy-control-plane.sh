@@ -50,7 +50,7 @@ spec:
       enabled: true
 EOF
 
-oc create -f - << EOF
+oc apply -f - << EOF
 apiVersion: maistra.io/v1
 kind: ServiceMeshMemberRoll
 metadata:
