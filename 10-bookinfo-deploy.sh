@@ -8,7 +8,7 @@ if [[ -z ${ISTIO_PROJECT} ]]; then
 fi
 
 if [[ -z ${ISTIO_SYSTEM} ]]; then
-  ISTIO_PROJECT='basic'
+  ISTIO_SYSTEM='basic'
 fi
 
 if [[ -z ${BOOKINFO_PROJECT} ]]; then
