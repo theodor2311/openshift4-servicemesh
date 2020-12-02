@@ -1,15 +1,20 @@
 #!/bin/bash
 set -e
 
+source $HOME/.bashrc
+
 if [[ -z ${BOOKINFO_PROJECT} ]]; then
   BOOKINFO_PROJECT='bookinfo'
 fi
 
-ISTIO_RELEASE=$(curl --silent https://api.github.com/repos/istio/istio/releases/latest |grep -Po '"tag_name": "\K.*?(?=")')
+if [[ -z ${ISTIO_RELEASE} ]]; then
+  ISTIO_RELEASE=$(curl --silent https://api.github.com/repos/istio/istio/releases/latest |grep -Po '"tag_name": "\K.*?(?=")')
+fi
 
 grep BOOKINFO_PROJECT $HOME/.bashrc || echo "export BOOKINFO_PROJECT=$BOOKINFO_PROJECT" >> $HOME/.bashrc
 grep ISTIO_RELEASE $HOME/.bashrc || echo "export ISTIO_RELEASE=$ISTIO_RELEASE" >> $HOME/.bashrc
 
+echo "Creating project for bookinfo..."
 oc new-project $BOOKINFO_PROJECT >/dev/null
 
 oc get smmr default -n istio-system -o json --export | jq '.spec.members += ["'"$BOOKINFO_PROJECT"'"]' | oc apply -n istio-system -f -
@@ -24,3 +29,5 @@ oc apply -n $BOOKINFO_PROJECT -f https://raw.githubusercontent.com/istio/istio/$
 
 export GATEWAY_URL="http://$(oc -n istio-system get route istio-ingressgateway -o jsonpath='{.spec.host}')"
 grep -q GATEWAY_URL $HOME/.bashrc || echo "export GATEWAY_URL=$GATEWAY_URL" >> ~/.bashrc
+
+printf "You may now access the bookinfo application from:\n%s/productpage\n" "$GATEWAY_URL"
