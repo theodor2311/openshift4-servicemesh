@@ -14,8 +14,17 @@ If you don't know what to do next, you can deploy a well known application calle
 ```
 # Demo Scenarios
 ## [Request Routing](https://istio.io/latest/docs/tasks/traffic-management/request-routing/)
-...TODO...
-
+Without any virtual service, the behavior will be round-robin to all reviews services, this is the default behavior of OpenShift service.
+### Route to V1
+Follow the instruction after running the script.
+```bash
+./20-bookinfo-traffic-all-v1.sh
+```
+### [Route based on user identity](https://istio.io/latest/docs/tasks/traffic-management/request-routing/#route-based-on-user-identity)
+Follow the instruction after running the script.
+```bash
+./21-bookinfo-traffic-jason-v2.sh
+```
 ## Fault Injection
 ...TODO...
 
