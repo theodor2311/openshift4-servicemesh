@@ -17,7 +17,18 @@ grep -q ISTIO_RELEASE $HOME/.bashrc || echo "export ISTIO_RELEASE=$ISTIO_RELEASE
 echo "Creating project for bookinfo..."
 oc new-project $BOOKINFO_PROJECT >/dev/null
 
-oc get smmr default -n istio-system -o json | jq '.spec.members += ["'"$BOOKINFO_PROJECT"'"]' | oc apply -n istio-system -f -
+
+cat <<EOF | oc create -f -
+apiVersion: maistra.io/v1
+kind: ServiceMeshMember
+metadata:
+  name: default
+spec:
+  controlPlaneRef:
+    namespace: istio-system
+    name: basic
+EOF
+
 
 oc apply -n $BOOKINFO_PROJECT -f https://raw.githubusercontent.com/istio/istio/${ISTIO_RELEASE}/samples/bookinfo/platform/kube/bookinfo.yaml
 
