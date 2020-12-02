@@ -23,8 +23,12 @@ oc apply -n $BOOKINFO_PROJECT -f https://raw.githubusercontent.com/istio/istio/$
 if [[ -z ${GATEWAY_URL} ]]; then
   GATEWAY_URL="http://$(oc -n istio-system get route istio-ingressgateway -o jsonpath='{.spec.host}')"
 fi
+
 printf """Instructions:
-URL: $GATEWAY_URL/productpage.
-On the /productpage of the Bookinfo app, log in as user jason without the password.
-The star ratings appear next to each review.
+URL: $GATEWAY_URL/productpage
+1. Open the Bookinfo web application in your browser with above URL.
+2. On the /productpage web page, log in as user jason.
+   Refresh the browser. The star ratings appear next to each review.
+4. Log in as another user (pick any name you wish).
+   Refresh the browser. Now the stars are gone. 
 """

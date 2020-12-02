@@ -23,6 +23,8 @@ if [[ -z ${GATEWAY_URL} ]]; then
   GATEWAY_URL="http://$(oc -n istio-system get route istio-ingressgateway -o jsonpath='{.spec.host}')"
 fi
 
-printf """Open the Bookinfo site in your browser. The URL is $GATEWAY_URL/productpage.\n
-Notice that the reviews part of the page displays with no rating stars, no matter how many times you refresh. This is because you configured Istio to route all traffic for the reviews service to the version reviews:v1 and this version of the service does not access the star ratings service.
+printf """Instructions:
+URL: $GATEWAY_URL/productpage
+1. Open the Bookinfo web application in your browser with above URL.
+2. Notice that the reviews part of the page displays with no rating stars, no matter how many times you refresh. This is because you configured Istio to route all traffic for the reviews service to the version reviews:v1 and this version of the service does not access the star ratings service.
 """
