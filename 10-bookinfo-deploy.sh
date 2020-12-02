@@ -3,6 +3,14 @@ set -e
 
 source $HOME/.bashrc
 
+if [[ -z ${ISTIO_PROJECT} ]]; then
+  ISTIO_PROJECT='istio-system'
+fi
+
+if [[ -z ${ISTIO_SYSTEM} ]]; then
+  ISTIO_PROJECT='basic'
+fi
+
 if [[ -z ${BOOKINFO_PROJECT} ]]; then
   BOOKINFO_PROJECT='bookinfo'
 fi
@@ -17,18 +25,16 @@ grep -q ISTIO_RELEASE $HOME/.bashrc || echo "export ISTIO_RELEASE=$ISTIO_RELEASE
 echo "Creating project for bookinfo..."
 oc new-project $BOOKINFO_PROJECT >/dev/null
 
-
-cat <<EOF | oc create -f -
+cat <<EOF | oc create -n ${BOOKINFO_PROJECT} -f -
 apiVersion: maistra.io/v1
 kind: ServiceMeshMember
 metadata:
   name: default
 spec:
   controlPlaneRef:
-    namespace: istio-system
-    name: basic
+    namespace: ${ISTIO_PROJECT}
+    name: ${ISTIO_SYSTEM}
 EOF
-
 
 oc apply -n $BOOKINFO_PROJECT -f https://raw.githubusercontent.com/istio/istio/${ISTIO_RELEASE}/samples/bookinfo/platform/kube/bookinfo.yaml
 
