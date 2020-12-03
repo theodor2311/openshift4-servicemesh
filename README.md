@@ -14,7 +14,7 @@ If you don't know what to do next, you can deploy a well known application calle
 ```
 # Demo Scenarios
 ## Request Routing
-[More Details](https://istio.io/latest/docs/tasks/traffic-management/request-routing/)
+[More Details](https://istio.io/latest/docs/tasks/traffic-management/request-routing/)  
 Without any virtual service, the behavior will be round-robin to all reviews services, this is the default behavior of OpenShift service.
 ### Route traffics to version 1
 Follow the instructions after running the script.
@@ -22,14 +22,14 @@ Follow the instructions after running the script.
 ./20-bookinfo-traffic-all-v1.sh
 ```
 ### Route based on user identity
-[More Details](https://istio.io/latest/docs/tasks/traffic-management/request-routing/#route-based-on-user-identity)
+[More Details](https://istio.io/latest/docs/tasks/traffic-management/request-routing/#route-based-on-user-identity)  
 Follow the instructions after running the script.
 ```bash
 ./21-bookinfo-traffic-jason-v2.sh
 ```
 ## Fault Injection
 ### HTTP delay fault
-[More Details](https://istio.io/latest/docs/tasks/traffic-management/fault-injection/#injecting-an-http-delay-fault)
+[More Details](https://istio.io/latest/docs/tasks/traffic-management/fault-injection/#injecting-an-http-delay-fault)  
 Follow the instructions after running the script.
 ```bash
 ./30-bookinfo-fault-delay.sh
