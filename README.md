@@ -13,23 +13,27 @@ If you don't know what to do next, you can deploy a well known application calle
 ./10-bookinfo-deploy.sh
 ```
 # Demo Scenarios
-## [Request Routing](https://istio.io/latest/docs/tasks/traffic-management/request-routing/)
+## Request Routing
+[More Details](https://istio.io/latest/docs/tasks/traffic-management/request-routing/)
 Without any virtual service, the behavior will be round-robin to all reviews services, this is the default behavior of OpenShift service.
-### Route to V1
-Follow the instruction after running the script.
+### Route traffics to version 1
+Follow the instructions after running the script.
 ```bash
 ./20-bookinfo-traffic-all-v1.sh
 ```
-### [Route based on user identity](https://istio.io/latest/docs/tasks/traffic-management/request-routing/#route-based-on-user-identity)
-Follow the instruction after running the script.
+### Route based on user identity
+[More Details](https://istio.io/latest/docs/tasks/traffic-management/request-routing/#route-based-on-user-identity)
+Follow the instructions after running the script.
 ```bash
 ./21-bookinfo-traffic-jason-v2.sh
 ```
 ## Fault Injection
-...TODO...
-
-## mTLS
-...TODO...
-
+### HTTP delay fault
+[More Details](https://istio.io/latest/docs/tasks/traffic-management/fault-injection/#injecting-an-http-delay-fault)
+Follow the instructions after running the script.
+```bash
+./30-bookinfo-fault-delay.sh
+```
 ## References
+- [Red Hat Service Mesh](https://docs.openshift.com/container-platform/latest/service_mesh/v2x/servicemesh-release-notes.html)
 - [Istio Docs](https://istio.io/docs/)
