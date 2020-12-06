@@ -29,7 +29,7 @@ printf """Instructions:
 URL: $GATEWAY_URL/productpage
 1. Open the Bookinfo web application in your browser with above URL.
 2. On the /productpage web page, log in as user jason.
-   You expect the Bookinfo home page to load without errors in approximately 7 seconds. However, there is a problem, the Reviews section displays an error message.
+   You expect the Bookinfo home page to load without errors in approximately 7 seconds. However, there is a problem, the Reviews section displays an error message: \"Sorry, product reviews are currently unavailable for this book.\"
 3. View the web page response times:
     1. Open the Developer Tools menu in you web browser.
     2. Open the Network tab
