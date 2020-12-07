@@ -34,6 +34,12 @@ Follow the instructions after running the script.
 ```bash
 ./30-bookinfo-fault-delay.sh
 ```
+### HTTP abort fault
+[More Details](https://istio.io/latest/docs/tasks/traffic-management/fault-injection/#injecting-an-http-abort-fault)  
+Follow the instructions after running the script.
+```bash
+./31-bookinfo-abort-delay.sh
+```
 ## References
 - [Red Hat Service Mesh](https://docs.openshift.com/container-platform/latest/service_mesh/v2x/servicemesh-release-notes.html)
 - [Istio Docs](https://istio.io/docs/)
