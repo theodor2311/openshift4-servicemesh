@@ -5,7 +5,7 @@ echo "Installing Operators..."
 
 if ! oc get sub elasticsearch-operator -n openshift-operators-redhat >/dev/null 2>&1
 then
-if ! oc get project openshift-operators-redhat
+if ! oc get project openshift-operators-redhat >/dev/null 2>&1
 then
 cat <<EOF | oc create -f -
 apiVersion: v1
