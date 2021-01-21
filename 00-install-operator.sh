@@ -5,6 +5,30 @@ echo "Installing Operators..."
 
 if ! oc get sub elasticsearch-operator -n openshift-operators-redhat >/dev/null 2>&1
 then
+if ! oc get project openshift-operators-redhat >/dev/null 2>&1
+then
+cat <<EOF | oc create -f -
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/node-selector: ""
+  labels:
+    openshift.io/cluster-monitoring: "true"
+  name: openshift-operators-redhat
+EOF
+fi
+if ! oc get og openshift-operators-redhat -n openshift-operators-redhat >/dev/null 2>&1
+then
+oc create -f - << EOF
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-operators-redhat
+  namespace: openshift-operators-redhat
+spec: {}
+EOF
+fi
 oc create -f - << EOF
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
