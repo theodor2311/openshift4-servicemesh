@@ -44,7 +44,7 @@ done
 
 oc apply -n $BOOKINFO_PROJECT -f https://raw.githubusercontent.com/istio/istio/${ISTIO_RELEASE}/samples/bookinfo/networking/bookinfo-gateway.yaml
 
-export GATEWAY_URL="http://$(oc -n istio-system get route istio-ingressgateway -o jsonpath='{.spec.host}')"
+export GATEWAY_URL="http://$(oc -n ${ISTIO_PROJECT} get route istio-ingressgateway -o jsonpath='{.spec.host}')"
 grep -q GATEWAY_URL $HOME/.bashrc || echo "export GATEWAY_URL=$GATEWAY_URL" >> ~/.bashrc
 
 printf "You may now access the bookinfo application from:\n%s/productpage\n" "$GATEWAY_URL"
