@@ -20,7 +20,7 @@ oc apply -n $BOOKINFO_PROJECT -f https://raw.githubusercontent.com/istio/istio/$
 oc apply -n $BOOKINFO_PROJECT -f https://raw.githubusercontent.com/istio/istio/${ISTIO_RELEASE}/samples/bookinfo/networking/virtual-service-all-v1.yaml >/dev/null
 
 if [[ -z ${GATEWAY_URL} ]]; then
-  GATEWAY_URL="http://$(oc -n istio-system get route istio-ingressgateway -o jsonpath='{.spec.host}')"
+  GATEWAY_URL="http://$(oc -n ${ISTIO_PROJECT} get route istio-ingressgateway -o jsonpath='{.spec.host}')"
 fi
 
 printf """Instructions:
