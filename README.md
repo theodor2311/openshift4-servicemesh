@@ -1,5 +1,12 @@
 # Service Mesh Demo on OpenShift4
-This is a collection of scrtips for demonstrate Service Mesh on OpenShift4.
+This is a collection of scrtips for demonstrate Service Mesh on OpenShift4.  
+  
+Tested Verson:  
+OpenShift: 4.6.12  
+elasticsearch-operator.4.6.0-202011221454.p0  
+jaeger-operator.v1.20.2  
+kiali-operator.v1.24.4  
+servicemeshoperator.v2.0.1.1  
   
 ## How to start
 First, you have to deploy the Service Mesh control plane on the OpenShift by running the following scripts, you may find more details by referencing [Installing Red Hat OpenShift Service Mesh](https://docs.openshift.com/container-platform/latest/service_mesh/v2x/installing-ossm.html)
