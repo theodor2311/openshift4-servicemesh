@@ -1,7 +1,7 @@
 # Service Mesh Demo on OpenShift4
 This is a collection of scrtips for demonstrate Service Mesh on OpenShift4.  
   
-Tested Verson:  
+**Tested Verson:**  
 OpenShift: 4.6.12  
 elasticsearch-operator.4.6.0-202011221454.p0  
 jaeger-operator.v1.20.2  
