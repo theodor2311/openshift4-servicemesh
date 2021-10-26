@@ -40,6 +40,7 @@ oc apply -n $BOOKINFO_PROJECT -f https://raw.githubusercontent.com/istio/istio/$
 
 for deployment in $(oc get deployments -o jsonpath='{.items[*].metadata.name}' -n $BOOKINFO_PROJECT);do
 oc -n $BOOKINFO_PROJECT patch deployment $deployment -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject": "true"}}}}}'
+[[ ! -z $(oc -n $BOOKINFO_PROJECT get deployment $deployment -o jsonpath='{.spec.template.spec.containers[*].securityContext}') ]] && oc -n $BOOKINFO_PROJECT patch deployment $deployment --type='json' -p='[{"op": "remove", "path": "/spec/template/spec/containers/0/securityContext"}]'
 done
 
 oc apply -n $BOOKINFO_PROJECT -f https://raw.githubusercontent.com/istio/istio/${ISTIO_RELEASE}/samples/bookinfo/networking/bookinfo-gateway.yaml
