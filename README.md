@@ -3,7 +3,6 @@ This is a collection of scrtips for demonstrate Service Mesh on OpenShift4.
   
 **Tested Verson:**  
 OpenShift: 4.6.12  
-elasticsearch-operator.4.6.0-202011221454.p0  
 jaeger-operator.v1.20.2  
 kiali-operator.v1.24.4  
 servicemeshoperator.v2.0.1.1  
