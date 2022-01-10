@@ -5,6 +5,10 @@ if [[ -z ${BOOKINFO_PROJECT} ]]; then
   BOOKINFO_PROJECT='bookinfo'
 fi
 
+if [[ -z ${ISTIO_PROJECT} ]]; then
+  ISTIO_PROJECT='istio-system'
+fi
+
 if [[ -z ${ISTIO_RELEASE} ]]; then
   ISTIO_RELEASE=$(curl --silent https://api.github.com/repos/istio/istio/releases/latest |grep -Po '"tag_name": "\K.*?(?=")')
 fi
