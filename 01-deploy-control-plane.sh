@@ -5,15 +5,16 @@ if [[ -z ${ISTIO_PROJECT} ]]; then
   ISTIO_PROJECT='istio-system'
 fi
 
-echo "Create istio project: ${ISTIO_PROJECT}"
-oc new-project ${ISTIO_PROJECT} > /dev/null
+if oc get project ${ISTIO_PROJECT} &>/dev/null; then
+  echo "Creating istio project: ${ISTIO_PROJECT}"
+  oc new-project ${ISTIO_PROJECT} > /dev/null
+fi
 
 echo 'Checking subscriptions...'
 
 oc get sub jaeger-product -n openshift-operators >/dev/null
 oc get sub kiali-ossm -n openshift-operators >/dev/null
 oc get sub servicemeshoperator -n openshift-operators >/dev/null
-
 
 echo 'Waiting for opertaors...'
 
@@ -24,7 +25,7 @@ done
 echo $operator installed
 done
 
-echo 'Create Service Mesh Control Plane...'
+echo 'Creating Service Mesh Control Plane...'
 
 oc create -f - << EOF
 apiVersion: maistra.io/v2
