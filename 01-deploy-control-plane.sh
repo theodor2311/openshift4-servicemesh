@@ -5,7 +5,7 @@ if [[ -z ${ISTIO_PROJECT} ]]; then
   ISTIO_PROJECT='istio-system'
 fi
 
-if oc get project ${ISTIO_PROJECT} &>/dev/null; then
+if ! oc get project ${ISTIO_PROJECT} &>/dev/null; then
   echo "Creating istio project: ${ISTIO_PROJECT}"
   oc new-project ${ISTIO_PROJECT} > /dev/null
 fi
