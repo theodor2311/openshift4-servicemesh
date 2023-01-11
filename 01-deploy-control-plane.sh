@@ -34,7 +34,7 @@ metadata:
   name: basic
   namespace: ${ISTIO_PROJECT}
 spec:
-  version: v2.1
+  version: v2.3
   tracing:
     type: Jaeger
     sampling: 10000
