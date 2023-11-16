@@ -2,11 +2,11 @@
 This is a collection of scrtips for demonstrate Service Mesh on OpenShift4.  
   
 **Tested Verson:**  
-OpenShift: 4.13.0  
-elasticsearch-operator.v5.7.1
-jaeger-operator.v1.42.0-5  
-kiali-operator.v1.57.7  
-servicemeshoperator.v2.3.3 
+OpenShift: 4.14.0  
+elasticsearch-operator.v5.8.0  
+jaeger-operator.v1.47.1-5  
+kiali-operator.v1.65.11  
+servicemeshoperator.v2.4.5 
   
 ## How to start
 First, you have to deploy the Service Mesh control plane on the OpenShift by running the following scripts, you may find more details by referencing [Installing Red Hat OpenShift Service Mesh](https://docs.openshift.com/container-platform/latest/service_mesh/v2x/installing-ossm.html)
