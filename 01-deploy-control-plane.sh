@@ -12,13 +12,12 @@ fi
 
 echo 'Checking subscriptions...'
 
-oc get sub jaeger-product -n openshift-operators >/dev/null
 oc get sub kiali-ossm -n openshift-operators >/dev/null
 oc get sub servicemeshoperator -n openshift-operators >/dev/null
 
 echo 'Waiting for opertaors...'
 
-for operator in Elasticsearch Jaeger Kiali servicemesh;do
+for operator in Kiali servicemesh;do
 while [[ $(oc get csv -n ${ISTIO_PROJECT} $(oc get csv -n ${ISTIO_PROJECT} |grep -i $operator | awk '{print $1}') -o jsonpath='{.status.phase}') != 'Succeeded' ]];do
   sleep 1
 done
@@ -34,21 +33,18 @@ metadata:
   name: basic
   namespace: ${ISTIO_PROJECT}
 spec:
-  version: v2.4
-  tracing:
-    type: Jaeger
-    sampling: 10000
+  policy:
+    type: Istiod
   addons:
-    jaeger:
-      name: jaeger
-      install:
-        storage:
-          type: Memory
-    kiali:
-      enabled: true
-      name: kiali
     grafana:
       enabled: true
+    kiali:
+      enabled: true
+    prometheus:
+      enabled: true
+  telemetry:
+    type: Istiod
+  version: v2.6
 EOF
 
 oc apply -f - << EOF
