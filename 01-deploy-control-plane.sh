@@ -56,5 +56,6 @@ metadata:
 spec: {}
 EOF
 
+echo 'Waiting for control plane to be ready'
+oc wait --for condition=Ready -n ${ISTIO_PROJECT} smcp/basic --timeout 300s
 echo '** This is not a production grade control plane setup **'
-echo "Use 'watch oc get pods -n ${ISTIO_PROJECT}' to watch the istio resources to be created"
